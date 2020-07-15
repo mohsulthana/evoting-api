@@ -15,6 +15,7 @@ namespace App\Controllers;
  */
 
 use CodeIgniter\Controller;
+//------------------------------npx insomnia-documenter --config
 
 class BaseController extends Controller
 {

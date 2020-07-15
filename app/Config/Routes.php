@@ -37,6 +37,7 @@ $routes->post('/api/login', 'Api\Authentication::login');
 $routes->group('api', function($routes){
 	$routes->resource('kandidat');
 	$routes->resource('user');
+	$routes->resource('pasangan');
 });
 
 /**

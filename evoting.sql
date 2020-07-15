@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2020 at 07:51 PM
+-- Generation Time: Jul 15, 2020 at 08:38 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -34,18 +34,41 @@ CREATE TABLE `kandidat` (
   `visi` text NOT NULL,
   `misi` text NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `kelas` int(11) NOT NULL,
+  `kelas` varchar(20) NOT NULL,
   `pengalaman` text NOT NULL,
-  `foto` varchar(255) NOT NULL,
-  `hasil_vote` bigint(20) NOT NULL
+  `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kandidat`
 --
 
-INSERT INTO `kandidat` (`id`, `nama`, `nis`, `visi`, `misi`, `tanggal_lahir`, `kelas`, `pengalaman`, `foto`, `hasil_vote`) VALUES
-(1, 'Mohammad Sulthan', '0902', 'Saya akan', 'berjuang', '2020-07-09', 2, 'Tidak ada', 'disini', 0);
+INSERT INTO `kandidat` (`id`, `nama`, `nis`, `visi`, `misi`, `tanggal_lahir`, `kelas`, `pengalaman`, `foto`) VALUES
+(3, 'Mohammad Akbar', '0902', 'Saya akan', 'berjuang', '2020-07-09', '2', 'Tidak ada', 'disini');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pasangan`
+--
+
+CREATE TABLE `pasangan` (
+  `id` int(11) NOT NULL,
+  `id_ketua` int(11) NOT NULL,
+  `id_wakil` int(11) NOT NULL,
+  `pengalaman` text NOT NULL,
+  `visi` text NOT NULL,
+  `misi` text NOT NULL,
+  `perolehan_suara` int(11) NOT NULL,
+  `no_urut` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pasangan`
+--
+
+INSERT INTO `pasangan` (`id`, `id_ketua`, `id_wakil`, `pengalaman`, `visi`, `misi`, `perolehan_suara`, `no_urut`) VALUES
+(2, 1, 902, 'Tidak ada', 'Saya akan', 'berjuang', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -74,6 +97,12 @@ ALTER TABLE `kandidat`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pasangan`
+--
+ALTER TABLE `pasangan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -87,7 +116,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kandidat`
 --
 ALTER TABLE `kandidat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `pasangan`
+--
+ALTER TABLE `pasangan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
