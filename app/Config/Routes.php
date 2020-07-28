@@ -38,6 +38,7 @@ $routes->group('api', function($routes){
 	$routes->resource('kandidat');
 	$routes->resource('user');
 	$routes->resource('pasangan');
+	$routes->resource('voting');
 });
 
 /**

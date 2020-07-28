@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 08:38 PM
+-- Generation Time: Jul 28, 2020 at 12:37 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -44,7 +44,7 @@ CREATE TABLE `kandidat` (
 --
 
 INSERT INTO `kandidat` (`id`, `nama`, `nis`, `visi`, `misi`, `tanggal_lahir`, `kelas`, `pengalaman`, `foto`) VALUES
-(3, 'Mohammad Akbar', '0902', 'Saya akan', 'berjuang', '2020-07-09', '2', 'Tidak ada', 'disini');
+(1, 'Mohammad Akbar', '0902', 'Saya akan', 'berjuang', '2020-07-09', '2', 'Tidak ada', 'disini');
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,8 @@ CREATE TABLE `pasangan` (
 --
 
 INSERT INTO `pasangan` (`id`, `id_ketua`, `id_wakil`, `pengalaman`, `visi`, `misi`, `perolehan_suara`, `no_urut`) VALUES
-(2, 1, 902, 'Tidak ada', 'Saya akan', 'berjuang', 0, 2);
+(1, 1, 902, 'Tidak ada', 'Saya akan', 'berjuang', 0, 2),
+(2, 1, 902, 'Tidak ada', 'Saya akan', 'berjuang', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -86,6 +87,28 @@ CREATE TABLE `user` (
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `voting`
+--
+
+CREATE TABLE `voting` (
+  `id` int(11) NOT NULL,
+  `id_pasangan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tanggal_voting` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `voting`
+--
+
+INSERT INTO `voting` (`id`, `id_pasangan`, `id_user`, `tanggal_voting`) VALUES
+(1, 1, 1, '2020-07-24 17:05:56'),
+(2, 2, 2, '2020-07-24 17:05:56'),
+(3, 2, 3, '2020-07-28 17:13:14');
+
 --
 -- Indexes for dumped tables
 --
@@ -100,13 +123,21 @@ ALTER TABLE `kandidat`
 -- Indexes for table `pasangan`
 --
 ALTER TABLE `pasangan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_urut` (`no_urut`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `voting`
+--
+ALTER TABLE `voting`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_user` (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -129,6 +160,12 @@ ALTER TABLE `pasangan`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `voting`
+--
+ALTER TABLE `voting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

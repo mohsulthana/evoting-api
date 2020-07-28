@@ -15,7 +15,7 @@ class Pasangan extends ResourceController
 
   public function index()
   {
-    $params_query = $this->request->getGet();         
+    $params_query = $this->request->getGet();
     $pasangan = $this->model->like($params_query)->get()->getResultArray();
     return $this->respond($pasangan);
   }
@@ -61,14 +61,14 @@ class Pasangan extends ResourceController
 
   public function update($id = null)
   {
-    $data    = $this->request->getJSON();      
+    $data    = $this->request->getJSON();
     $record  = $this->model->find($id);
     if(empty($record)) {
       return $this->failNotFound(sprintf(
         'Pasangan dengan id %d tidak ditemukan',
         $id
       ));
-    } 
+    }
     if($this->model->update($id, $data) === FALSE)
     {
       return $this->fail($this->model->errors());
