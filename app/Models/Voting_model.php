@@ -15,11 +15,15 @@ class Voting_model extends Model
     'tanggal_voting'
   ];
 
-  public function getVoting()
-  {
-    $db      = \Config\Database::connect();
-    $builder = $db->table('voting');
+  protected $validationRules = [
+    'id_pasangan' => 'required',
+    'id_user' => 'required|is_unique[voting.id_user]',
+    'tanggal_voting' => 'required'
+  ];
 
-    return $builder->selectCount('id_pasangan')->groupBy('id_pasangan')->get();
-  }
+  protected $validationMessages = [
+    'id_user'        => [
+        'is_unique' => 'Anda sudah melakukan voting sekali.'
+    ]
+];
 }

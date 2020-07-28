@@ -28,7 +28,7 @@ class Voting extends ResourceController
     {
       return $this->fail($this->model->errors());
     }
-    $data->id = $this->model->getInsertID();
+
     return $this->respondCreated($data);
   }
 }
