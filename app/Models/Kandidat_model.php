@@ -29,4 +29,6 @@ class Kandidat_model extends Model
     'pengalaman'		=> 'required',
     'foto'		=> 'required'
   ];
+
+	protected $useTimestamps = true;
 }

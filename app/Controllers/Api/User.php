@@ -15,7 +15,7 @@ class User extends ResourceController
 
   public function index()
   {
-    $params_query = $this->request->getGet();         
+    $params_query = $this->request->getGet();
     $user = $this->model->like($params_query)->get()->getResultArray();
     return $this->respond($user);
   }
@@ -32,5 +32,17 @@ class User extends ResourceController
     }
 
     return $this->respond($record);
+  }
+
+  public function create()
+  {
+    $data = $this->request->getJSON();
+
+    if (!$this->model->save($data))
+    {
+      return $this->fail($this->model->errors());
+    }
+    $data->id = $this->model->getInsertID();
+    return $this->respondCreated($data);
   }
 }

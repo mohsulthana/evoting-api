@@ -23,4 +23,6 @@ class User_model extends Model
 		'password'	=> 'required',
 		'role'		=> 'required'
 	];
+
+	protected $useTimestamps = true;
 }

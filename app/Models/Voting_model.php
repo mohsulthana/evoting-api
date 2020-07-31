@@ -25,5 +25,7 @@ class Voting_model extends Model
     'id_user'        => [
         'is_unique' => 'Anda sudah melakukan voting sekali.'
     ]
-];
+  ];
+
+	protected $useTimestamps = true;
 }

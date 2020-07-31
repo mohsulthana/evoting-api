@@ -27,4 +27,6 @@ class Pasangan_model extends Model
     'perolehan_suara'		=> 'required',
     'no_urut' => 'required'
   ];
+
+	protected $useTimestamps = true;
 }
