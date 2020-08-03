@@ -15,18 +15,18 @@ class Authentication extends ResourceController
   protected $format       = 'json';
 
   public function login()
-  {    
+  {
     $data = $this->request->getJSON(TRUE);
-    
+
     if(empty($data['username']) || empty($data['password'])) {
       return $this->failUnauthorized();
     }
 
     $record = $this->model->where('username', $data['username'])->first();
-    
+
     if($record) {
-      $check = password_verify($data['password'], $record['password']);
-      
+      $check = $this->model->where('password', $data['password'])->first();
+
       if($check) {
         $role = '';
         switch ($record['role']) {
@@ -39,9 +39,9 @@ class Authentication extends ResourceController
           case 3:
             $role = 'guru';
             break;
-          default:            
+          default:
             break;
-        }       
+        }
         $payload_scopes = [
         'username'  => $record['username'],
         'password'  => $record['password'],
@@ -49,10 +49,10 @@ class Authentication extends ResourceController
         'role'    => $role
         ];
         return $this->respond([
-          'msg' => "berhasil masuk"
+          'msg' => "Berhasil masuk"
         ]);
-      }       
-    }       
+      }
+    }
     return $this->failUnauthorized();
   }
 }
