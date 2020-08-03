@@ -48,9 +48,7 @@ class Authentication extends ResourceController
         'nama'    => $record['nama'],
         'role'    => $role
         ];
-        return $this->respond([
-          'msg' => "Berhasil masuk"
-        ]);
+        return $this->respond($record);
       }
     }
     return $this->failUnauthorized();
