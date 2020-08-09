@@ -35,14 +35,27 @@ class Kandidat extends ResourceController
 
   public function create()
   {
-    $data = $this->request->getJSON();
+    $data = $this->request->getPost();
+    $foto = $this->request->getFile('foto');
+    $data['foto'] = $foto->getName();
 
     if (!$this->model->save($data))
     {
       return $this->fail($this->model->errors());
     }
-    $data->id = $this->model->getInsertID();
-    return $this->respondCreated($data);
+
+    $id = $this->model->getInsertID();
+
+    if (!is_dir(FCPATH . 'uploads/kandidat/' . $id)) {
+      mkdir(FCPATH . 'uploads/kandidat/' . $id, 0777, true);
+    }
+
+    if ($foto->isValid() && ! $foto->hasMoved())
+    {
+      $foto->move(FCPATH . 'uploads/kandidat/' . $id, $foto->getName());
+    }
+
+    return $this->respondCreated($data, "Kandidat berhasil dibuat");
   }
 
   public function delete($id = null)

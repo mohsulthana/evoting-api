@@ -8,12 +8,12 @@ class Kandidat_model extends Model
 {
   protected $table = 'kandidat';
   protected $primaryKey = 'id';
+
   protected $allowedFields = [
     'nama',
     'nis',
     'visi',
     'misi',
-    'tanggal_lahir',
     'kelas',
     'pengalaman',
     'foto'
@@ -24,11 +24,8 @@ class Kandidat_model extends Model
     'nis'		=> 'required',
     'visi'		=> 'required',
     'misi'		=> 'required',
-    'tanggal_lahir'				=> 'required',
     'kelas'				=> 'required',
     'pengalaman'		=> 'required',
     'foto'		=> 'required'
   ];
-
-	protected $useTimestamps = true;
 }
