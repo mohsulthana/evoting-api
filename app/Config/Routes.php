@@ -39,6 +39,7 @@ $routes->group('api', function($routes){
 	$routes->resource('user');
 	$routes->resource('pasangan');
 	$routes->resource('voting');
+	$routes->resource('foto');
 });
 
 /**
