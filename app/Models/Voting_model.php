@@ -23,9 +23,7 @@ class Voting_model extends Model
 
   protected $validationMessages = [
     'id_user'        => [
-        'is_unique' => 'Anda sudah melakukan voting sekali.'
+      'is_unique' => 'Anda sudah melakukan voting sekali.'
     ]
   ];
-
-	protected $useTimestamps = true;
 }
