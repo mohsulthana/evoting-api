@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2020 at 12:37 PM
+-- Generation Time: Aug 10, 2020 at 02:11 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -31,9 +31,6 @@ CREATE TABLE `kandidat` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `nis` varchar(255) NOT NULL,
-  `visi` text NOT NULL,
-  `misi` text NOT NULL,
-  `tanggal_lahir` date NOT NULL,
   `kelas` varchar(20) NOT NULL,
   `pengalaman` text NOT NULL,
   `foto` varchar(255) NOT NULL
@@ -43,8 +40,9 @@ CREATE TABLE `kandidat` (
 -- Dumping data for table `kandidat`
 --
 
-INSERT INTO `kandidat` (`id`, `nama`, `nis`, `visi`, `misi`, `tanggal_lahir`, `kelas`, `pengalaman`, `foto`) VALUES
-(1, 'Mohammad Akbar', '0902', 'Saya akan', 'berjuang', '2020-07-09', '2', 'Tidak ada', 'disini');
+INSERT INTO `kandidat` (`id`, `nama`, `nis`, `kelas`, `pengalaman`, `foto`) VALUES
+(1, 'dfg', 'dfgdf', 'dfgdfgdfgdf', 'dfgdfgdfg', 'ss.png'),
+(2, 'dfgsdfsdfs', 'dfgdf', 'dfgdfgdfgdf', 'dfgdfgdfg', 'ss.png');
 
 -- --------------------------------------------------------
 
@@ -56,10 +54,8 @@ CREATE TABLE `pasangan` (
   `id` int(11) NOT NULL,
   `id_ketua` int(11) NOT NULL,
   `id_wakil` int(11) NOT NULL,
-  `pengalaman` text NOT NULL,
   `visi` text NOT NULL,
   `misi` text NOT NULL,
-  `perolehan_suara` int(11) NOT NULL,
   `no_urut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -67,9 +63,9 @@ CREATE TABLE `pasangan` (
 -- Dumping data for table `pasangan`
 --
 
-INSERT INTO `pasangan` (`id`, `id_ketua`, `id_wakil`, `pengalaman`, `visi`, `misi`, `perolehan_suara`, `no_urut`) VALUES
-(1, 1, 902, 'Tidak ada', 'Saya akan', 'berjuang', 0, 2),
-(2, 1, 902, 'Tidak ada', 'Saya akan', 'berjuang', 0, 1);
+INSERT INTO `pasangan` (`id`, `id_ketua`, `id_wakil`, `visi`, `misi`, `no_urut`) VALUES
+(1, 1, 902, 'Saya akan', 'berjuang', 2),
+(2, 2, 902, 'Saya akan', 'berjuang', 1);
 
 -- --------------------------------------------------------
 
@@ -86,6 +82,18 @@ CREATE TABLE `user` (
   `created_at` date NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `nama`, `password`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'tann', 'Sulthan', '123', 'siswa', '0000-00-00', '0000-00-00'),
+(2, 'barrrrr', 'Akbar', '123', 'siswa', '0000-00-00', '0000-00-00'),
+(3, 'barrrrr', 'Akbarz', '123', 'siswa', '2020-07-31', '2020-07-31'),
+(4, 'barrrrr', 'Akbarz', '123', 'siswa', '2020-07-31', '2020-07-31'),
+(5, 'barrrrr', 'Akbaz', '$2y$10$SuhpFPJ8nF8yC31.Ocy0fOlNSxOB486YEGSpMHdEbbWdkMEzUua.G', 'siswa', '2020-08-02', '2020-08-02'),
+(6, 'barrrrr', 'Akbaz', '$2y$10$Zbq.v67Jfs6EdIYj7fQ3UeJaLYyyDcJ0nuBS/XXnUJbtioN1PN2.S', 'siswa', '2020-08-02', '2020-08-02');
 
 -- --------------------------------------------------------
 
@@ -107,7 +115,10 @@ CREATE TABLE `voting` (
 INSERT INTO `voting` (`id`, `id_pasangan`, `id_user`, `tanggal_voting`) VALUES
 (1, 1, 1, '2020-07-24 17:05:56'),
 (2, 2, 2, '2020-07-24 17:05:56'),
-(3, 2, 3, '2020-07-28 17:13:14');
+(3, 2, 3, '2020-07-28 17:13:14'),
+(8, 1, 4, '2020-07-28 17:13:14'),
+(9, 1, 5, '2020-07-28 17:13:14'),
+(19, 1, 6, '2020-07-28 17:13:14');
 
 --
 -- Indexes for dumped tables
@@ -147,7 +158,7 @@ ALTER TABLE `voting`
 -- AUTO_INCREMENT for table `kandidat`
 --
 ALTER TABLE `kandidat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `pasangan`
@@ -159,13 +170,13 @@ ALTER TABLE `pasangan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `voting`
 --
 ALTER TABLE `voting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
