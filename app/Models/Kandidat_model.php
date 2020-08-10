@@ -12,8 +12,6 @@ class Kandidat_model extends Model
   protected $allowedFields = [
     'nama',
     'nis',
-    'visi',
-    'misi',
     'kelas',
     'pengalaman',
     'foto'
@@ -22,8 +20,6 @@ class Kandidat_model extends Model
   protected $validationRules = [
     'nama'		=> 'required',
     'nis'		=> 'required',
-    'visi'		=> 'required',
-    'misi'		=> 'required',
     'kelas'				=> 'required',
     'pengalaman'		=> 'required',
     'foto'		=> 'required'

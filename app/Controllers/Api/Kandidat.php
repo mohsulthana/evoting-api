@@ -25,7 +25,7 @@ class Kandidat extends ResourceController
     $record = $this->model->find($id);
     if (!$record) {
       return $this->failNotFound(sprintf(
-        'Siswa dengan id %d tidak ditemukan',
+        'Kandidat dengan id %d tidak ditemukan',
         $id
       ));
     }
@@ -55,7 +55,7 @@ class Kandidat extends ResourceController
       $foto->move(FCPATH . 'uploads/kandidat/' . $id, $foto->getName());
     }
 
-    return $this->respondCreated($data, "Kandidat berhasil dibuat");
+    return $this->respondCreated($data);
   }
 
   public function delete($id = null)
@@ -64,7 +64,7 @@ class Kandidat extends ResourceController
     if ($this->model->db->affectedRows() === 0)
     {
       return $this->failNotFound(sprintf(
-        'Siswa dengan id %d tidak ditemukan',
+        'Kandidat dengan id %d tidak ditemukan',
         $id
       ));
     }
@@ -78,7 +78,7 @@ class Kandidat extends ResourceController
     $record  = $this->model->find($id);
     if(empty($record)) {
       return $this->failNotFound(sprintf(
-        'Siswa dengan id %d tidak ditemukan',
+        'Kandidat dengan id %d tidak ditemukan',
         $id
       ));
     }
