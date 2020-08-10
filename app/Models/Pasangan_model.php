@@ -25,8 +25,12 @@ class Pasangan_model extends Model
     'misi'		=> 'required',
     'pengalaman'		=> 'required',
     'perolehan_suara'		=> 'required',
-    'no_urut' => 'required'
+    'no_urut' => 'required|is_unique[pasangan.no_urut]'
   ];
 
-	protected $useTimestamps = true;
+  protected $validationMessages = [
+    'no_urut'        => [
+      'is_unique' => 'Nomor urut ini sudah ada.'
+    ]
+  ];
 }
