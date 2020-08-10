@@ -74,19 +74,30 @@ class Kandidat extends ResourceController
 
   public function update($id = null)
   {
-    $data    = $this->request->getJSON();
-    $record  = $this->model->find($id);
+    $data     = $this->request->getPost();
+    $foto     = $this->request->getFile('foto');
+    $data['foto']   = $foto->getName();
+    $record   = $this->model->find($id);
+
     if(empty($record)) {
       return $this->failNotFound(sprintf(
         'Kandidat dengan id %d tidak ditemukan',
         $id
       ));
     }
-    if($this->model->update($id, $data) === FALSE)
-    {
+
+    if($this->model->update($id, $data) === FALSE) {
       return $this->fail($this->model->errors());
     }
-    $data->id = $id;
+
+    if(file_exists(FCPATH . 'uploads/kandidat/' . $id . '/' . $record['foto'])) {
+      unlink(FCPATH . 'uploads/kandidat/' . $id . '/' . $record['foto']);
+    }
+
+    if ($foto->isValid() && ! $foto->hasMoved()) {
+      $foto->move(FCPATH . 'uploads/kandidat/' . $id, $foto->getName());
+    }
+
     return $this->respond($data);
   }
 }
