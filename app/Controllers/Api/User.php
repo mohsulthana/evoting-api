@@ -45,4 +45,36 @@ class User extends ResourceController
     $data->id = $this->model->getInsertID();
     return $this->respondCreated($data);
   }
+  
+  public function delete($id = null)
+  {
+    $this->model->delete($id);
+    if ($this->model->db->affectedRows() === 0)
+    {
+      return $this->failNotFound(sprintf(
+        'Pasangan dengan id %d tidak ditemukan',
+        $id
+      ));
+    }
+
+    return $this->respondDeleted(['id' => $id]);
+  }
+
+  public function update($id = null)
+  {
+    $data    = $this->request->getJSON();
+    $record  = $this->model->find($id);
+    if(empty($record)) {
+      return $this->failNotFound(sprintf(
+        'Pengguna dengan id %d tidak ditemukan',
+        $id
+      ));
+    }
+    if($this->model->update($id, $data) === FALSE)
+    {
+      return $this->fail($this->model->errors());
+    }
+    $data->id = $id;
+    return $this->respond($data);
+  }
 }
