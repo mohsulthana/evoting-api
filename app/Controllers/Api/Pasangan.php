@@ -16,7 +16,7 @@ class Pasangan extends ResourceController
   public function index()
   {
     $params_query = $this->request->getGet();
-    $pasangan = $this->model->select("pasangan.id, pasangan.visi, pasangan.misi, pasangan.no_urut, A.nama as 'nama_ketua',A.pengalaman as 'pengalaman_ketua',B.pengalaman as 'pengalaman_wakil',A.foto as 'foto_ketua',B.foto as 'foto_wakil', B.nama as 'nama_wakil'")->join('kandidat A', "A.id=pasangan.id_ketua","left")->join("kandidat B","B.id=pasangan.id_wakil","left")->get()->getResultArray();
+    $pasangan = $this->model->select("pasangan.id, pasangan.visi, pasangan.misi, pasangan.no_urut, A.nama as 'nama_ketua',A.pengalaman as 'pengalaman_ketua',B.pengalaman as 'pengalaman_wakil',A.foto as 'foto_ketua',B.foto as 'foto_wakil',A.id as 'id_ketua',B.id as 'id_wakil', B.nama as 'nama_wakil'")->join('kandidat A', "A.id=pasangan.id_ketua","left")->join("kandidat B","B.id=pasangan.id_wakil","left")->get()->getResultArray();
     return $this->respond($pasangan);
   }
 
