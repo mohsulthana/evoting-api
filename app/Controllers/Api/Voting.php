@@ -31,4 +31,11 @@ class Voting extends ResourceController
 
     return $this->respondCreated($data);
   }
+
+  public function showVoter()
+  {
+    $params_query = $this->request->getGet();
+    $voter = $this->model->select('*')->join('user', 'user.id = voting.id_user')->get()->getResultArray();
+    return $this->respond($voter);
+  }
 }

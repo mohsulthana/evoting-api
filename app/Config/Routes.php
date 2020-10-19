@@ -41,6 +41,7 @@ $routes->group('api', function($routes){
 	$routes->resource('voting');
 	$routes->resource('foto');
 });
+$routes->get('/voter', 'Api\Voting::showVoter');
 
 /**
  * --------------------------------------------------------------------
