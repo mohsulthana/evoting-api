@@ -46,13 +46,13 @@ class Kandidat extends ResourceController
 
     $id = $this->model->getInsertID();
 
-    if (!is_dir(FCPATH . 'uploads/kandidat/' . $id)) {
-      mkdir(FCPATH . 'uploads/kandidat/' . $id, 0777, true);
+    if (!is_dir(WRITEPATH.'uploads/kandidat/' . $id)) {
+      mkdir(WRITEPATH.'uploads/kandidat/' . $id, 0777, true);
     }
 
     if ($foto->isValid() && ! $foto->hasMoved())
     {
-      $foto->move(FCPATH . 'uploads/kandidat/' . $id, $foto->getName());
+      $foto->move(WRITEPATH.'uploads/kandidat/' . $id, $foto->getName());
     }
 
     return $this->respondCreated($data);
@@ -90,12 +90,12 @@ class Kandidat extends ResourceController
       return $this->fail($this->model->errors());
     }
 
-    if(file_exists(FCPATH . 'uploads/kandidat/' . $id . '/' . $record['foto'])) {
-      unlink(FCPATH . 'uploads/kandidat/' . $id . '/' . $record['foto']);
+    if(file_exists(WRITEPATH.'uploads/kandidat/' . $id . '/' . $record['foto'])) {
+      unlink(WRITEPATH.'uploads/kandidat/' . $id . '/' . $record['foto']);
     }
 
     if ($foto->isValid() && ! $foto->hasMoved()) {
-      $foto->move(FCPATH . 'uploads/kandidat/' . $id, $foto->getName());
+      $foto->move(WRITEPATH.'uploads/kandidat/' . $id, $foto->getName());
     }
 
     return $this->respond($data);

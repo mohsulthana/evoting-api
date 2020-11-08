@@ -23,7 +23,8 @@ class Pasangan extends ResourceController
   public function show($id = NULL)
   {
     $record = $this->model->find($id);
-    if (!$record) {
+    if (!$record)
+    {
       return $this->failNotFound(sprintf(
         'Pasangan dengan id %d tidak ditemukan',
         $id
@@ -63,7 +64,8 @@ class Pasangan extends ResourceController
   {
     $data    = $this->request->getJSON();
     $record  = $this->model->find($id);
-    if(empty($record)) {
+    if(empty($record))
+    {
       return $this->failNotFound(sprintf(
         'Pasangan dengan id %d tidak ditemukan',
         $id
